@@ -9,7 +9,7 @@ interface ShortPostProps {
 export default function ShortPost({ url, date, desc, title }: ShortPostProps) {
   return (
     <div>
-      <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
+      <h3 className="mb-4 text-3xl lg:text-4xl leading-tight">
         <Link className="hover:underline" href={url}>
           {title}
         </Link>
