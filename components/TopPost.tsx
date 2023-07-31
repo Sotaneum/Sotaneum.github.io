@@ -18,7 +18,7 @@ export default function TopPost({
   imageUrl,
 }: TopPostProps) {
   return (
-    <section className="bg-opacity-50 rounded-2xl	shadow-md p-4 mb-20 md:mb-28">
+    <section className="bg-opacity-50 rounded-1xl	shadow-md p-4 mb-20 md:mb-28">
       {imageUrl && (
         <div className="mb-8 md:mb-16">
           <Link href={url}>
