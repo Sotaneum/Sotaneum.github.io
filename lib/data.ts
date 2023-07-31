@@ -1,6 +1,8 @@
 import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
+import { remark } from "remark";
+import html from "remark-html";
 
 interface PostInfo {
   title: string;
@@ -36,22 +38,27 @@ function toDate(filename: string) {
   );
 }
 
+function convertImagePath(content: string) {
+  return content.replace(/\.\.\/public/g, "");
+}
+
 export function toPost(filename: string): PostInfo {
   const fullPath = join(postsDirectory, `${filename}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
   const createDate = toDate(filename);
+  const url = `/posts/${filename}`;
 
   return {
+    url,
     title: data.title,
     date: createDate,
     excerpt: data.excerpt,
-    coverImage: data.coverImage,
+    coverImage: `${url}/${data.coverImage}`,
     groupTags: data.groupTags || [],
     tags: data.tags || [],
-    url: `/posts/${filename}`,
-    content,
+    content: convertImagePath(content),
   };
 }
 
@@ -59,4 +66,11 @@ export function getAllPosts() {
   return getPostFilenames()
     .map((filename) => toPost(filename))
     .sort((a, b) => (a.date > b.date ? -1 : 1));
+}
+
+export function toHTML(markdown: string) {
+  return remark()
+    .use(html)
+    .process(markdown)
+    .then((html) => html.toString());
 }
