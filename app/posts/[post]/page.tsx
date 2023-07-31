@@ -18,6 +18,8 @@ export default async function PostPage({
   );
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getPostFilenames().map((post) => ({ post }));
 }
