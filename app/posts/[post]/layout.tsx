@@ -9,7 +9,17 @@ export default function PostLayout({
   params,
   children,
 }: DynamicProps<{ post: string }>) {
-  const { title, groupTags, tags, date, coverImage } = toPost(params.post);
+  const {
+    title,
+    groupTags = [],
+    tags = [],
+    date,
+    coverImage,
+  } = toPost(params.post);
+  const keywords = [
+    ...groupTags.filter((tag) => !tags.includes(tag)),
+    ...tags,
+  ].sort();
 
   return (
     <div>
@@ -19,7 +29,7 @@ export default function PostLayout({
           <DateString date={date} />
         </div>
         {children}
-        <Keywords />
+        <Keywords keywords={keywords} selected={keywords} />
         <Comments />
       </div>
     </div>
