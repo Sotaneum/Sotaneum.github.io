@@ -24,7 +24,7 @@ export default function TopPost({
           <Link href={url}>
             <Image
               className="shadow-sm w-full hover:shadow-lg transition-shadow duration-200"
-              src={`${url}/${imageUrl}`}
+              src={imageUrl}
               alt={desc}
               width={2000}
               height={1000}
