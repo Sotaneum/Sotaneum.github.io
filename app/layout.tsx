@@ -1,4 +1,3 @@
-import "./globals.css";
 import type { Metadata } from "next";
 import { Gowun_Dodum } from "next/font/google";
 import { DefaultProps } from "@/app/types";
