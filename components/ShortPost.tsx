@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DateString from "@/components/DateString";
 
 interface ShortPostProps {
   url: string;
@@ -15,7 +16,7 @@ export default function ShortPost({ url, date, desc, title }: ShortPostProps) {
         </Link>
       </h3>
       <div className="mb-4 md:mb-0 text-lg">
-        <time dateTime={date.toISOString()}>{date.toISOString()}</time>
+        <DateString date={date} />
       </div>
       {desc && <p className="text-lg leading-relaxed mb-4">{desc}</p>}
     </div>
