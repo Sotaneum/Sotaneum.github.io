@@ -4,11 +4,12 @@ import { DefaultProps } from "@/app/types";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/index.css";
+import { BLOG_NAME } from "@/lib/constants";
 
 const gowunDodum = Gowun_Dodum({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "이것저것 블로그",
+  title: BLOG_NAME,
   description: "IT부터 그냥 이것저것 작성한 공간입니다.",
 };
 
