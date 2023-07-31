@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Gowun_Dodum } from "next/font/google";
 import { DefaultProps } from "@/app/types";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const gowunDodum = Gowun_Dodum({ weight: "400", subsets: ["latin"] });
 
@@ -13,7 +15,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: DefaultProps) {
   return (
     <html lang="ko">
-      <body className={gowunDodum.className}>{children}</body>
+      <body className={gowunDodum.className}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
