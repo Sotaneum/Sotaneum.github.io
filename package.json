@@ -7,7 +7,7 @@
     "build": "next build",
     "prestart": "npm run build",
     "start": "npx serve@latest out",
-    "lint": "next lint",
+    "lint": "next lint --file ./lintstagedrc.js",
     "prepare": "husky install"
   },
   "dependencies": {
