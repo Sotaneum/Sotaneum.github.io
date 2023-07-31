@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Gowun_Dodum } from "next/font/google";
 import { DefaultProps } from "@/app/types";
 
-const { className } = Gowun_Dodum({ weight: "400" });
+const gowunDodum = Gowun_Dodum({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "이것저것 블로그",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: DefaultProps) {
   return (
     <html lang="ko">
-      <body className={className}>{children}</body>
+      <body className={gowunDodum.className}>{children}</body>
     </html>
   );
 }
