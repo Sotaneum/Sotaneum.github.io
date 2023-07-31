@@ -3,6 +3,7 @@ import { Gowun_Dodum } from "next/font/google";
 import { DefaultProps } from "@/app/types";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import "@/styles/index.css";
 
 const gowunDodum = Gowun_Dodum({ weight: "400", subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: DefaultProps) {
   return (
     <html lang="ko">
-      <body className={gowunDodum.className}>
+      <body className={`${gowunDodum.className} container mx-auto px-5`}>
         <Header />
         {children}
         <Footer />
