@@ -4,6 +4,7 @@ import Comments from "@/components/Comments";
 import Title from "@/components/Title";
 import { toPost } from "@/lib/data";
 import DateString from "@/components/DateString";
+import SearchResult from "@/components/SearchResult";
 
 export default function PostLayout({
   params,
@@ -32,6 +33,7 @@ export default function PostLayout({
         <Keywords keywords={keywords} selected={keywords} />
         <Comments />
       </div>
+      <SearchResult />
     </div>
   );
 }
