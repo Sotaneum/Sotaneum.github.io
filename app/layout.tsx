@@ -4,6 +4,7 @@ import { DefaultProps } from "@/app/types";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/index.css";
+import "@/styles/github-markdown.css";
 import { BLOG_NAME } from "@/lib/constants";
 
 const gowunDodum = Gowun_Dodum({ weight: "400", subsets: ["latin"] });

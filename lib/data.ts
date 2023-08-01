@@ -1,8 +1,6 @@
 import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
 
 export interface PostInfo {
   title: string;
@@ -66,11 +64,4 @@ export function getAllPosts() {
   return getPostFilenames()
     .map((filename) => toPost(filename))
     .sort((a, b) => (a.date > b.date ? -1 : 1));
-}
-
-export function toHTML(markdown: string) {
-  return remark()
-    .use(html)
-    .process(markdown)
-    .then((html) => html.toString());
 }

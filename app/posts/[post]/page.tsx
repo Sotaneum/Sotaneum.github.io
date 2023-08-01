@@ -1,20 +1,19 @@
-import { getPostFilenames, toHTML, toPost } from "@/lib/data";
-import markdownStyles from "@/styles/markdown.module.css";
+import { getPostFilenames, toPost } from "@/lib/data";
 import { DynamicProps } from "@/app/types";
 import { Metadata, ResolvingMetadata } from "next";
 import { BLOG_NAME } from "@/lib/constants";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default async function PostPage({
   params,
 }: DynamicProps<{ post: string }>) {
   const post = toPost(params.post);
-  const content = await toHTML(post.content || "");
 
   return (
-    <div
-      className={markdownStyles["markdown"]}
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
+    <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]}>
+      {post.content}
+    </ReactMarkdown>
   );
 }
 
