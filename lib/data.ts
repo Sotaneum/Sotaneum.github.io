@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-interface PostInfo {
+export interface PostInfo {
   title: string;
   date: Date;
   excerpt: string;
