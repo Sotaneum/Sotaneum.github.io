@@ -4,6 +4,21 @@ import { getAllPosts } from "@/lib/data";
 
 export default function RootPage() {
   const posts = getAllPosts();
+
+  if (posts.length === 0) {
+    return (
+      <main>
+        <TopPost
+          url="/"
+          title="좋은 글로 찾아뵙겠습니다"
+          desc="아직 작성된 글이 없습니다."
+          date={new Date()}
+          imageUrl="/assets/error.jpg"
+        />
+      </main>
+    );
+  }
+
   const [topPost, ...shortPosts] = posts.slice(0, 3);
 
   return (
