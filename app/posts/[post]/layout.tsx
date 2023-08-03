@@ -1,4 +1,3 @@
-import { DynamicProps } from "@/app/types";
 import Comments from "@/components/Comments";
 import Title from "@/components/Title";
 import { getAllPosts, toPost } from "@/lib/data";
@@ -7,10 +6,12 @@ import SearchResult from "@/components/SearchResult";
 import Pagination from "@/components/Pagination";
 import { isEqualGroupTags, isEqualPost } from "@/lib/is-equal";
 
-export default function PostLayout({
-  params,
-  children,
-}: DynamicProps<{ post: string }>) {
+interface PostLayoutProps {
+  params: { post: string };
+  children: React.ReactNode;
+}
+
+export default function PostLayout({ params, children }: PostLayoutProps) {
   const allPosts = getAllPosts();
   const currentPost = toPost(params.post);
   const { title, groupTags = [], date, coverImage } = currentPost;

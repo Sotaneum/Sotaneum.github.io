@@ -1,13 +1,18 @@
 import { getPostFilenames, toPost } from "@/lib/data";
-import { DynamicProps } from "@/app/types";
 import { Metadata, ResolvingMetadata } from "next";
 import { BLOG_NAME } from "@/lib/constants";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-export default async function PostPage({
-  params,
-}: DynamicProps<{ post: string }>) {
+interface Params {
+  post: string;
+}
+
+interface PostPageProps {
+  params: Params;
+}
+
+export default async function PostPage({ params }: PostPageProps) {
   const post = toPost(params.post);
 
   return (
@@ -24,7 +29,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  { params }: DynamicProps<{ post: string }>,
+  { params }: PostPageProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { date, title, excerpt, coverImage } = toPost(params.post);

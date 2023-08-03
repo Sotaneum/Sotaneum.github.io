@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Gowun_Dodum } from "next/font/google";
-import { DefaultProps } from "@/app/types";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/index.css";
@@ -14,7 +13,11 @@ export const metadata: Metadata = {
   description: "IT부터 그냥 이것저것 작성한 공간입니다.",
 };
 
-export default function RootLayout({ children }: DefaultProps) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ko">
       <body className={`${gowunDodum.className} container mx-auto px-5`}>

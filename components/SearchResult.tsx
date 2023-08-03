@@ -1,7 +1,7 @@
 import { PostInfo } from "@/lib/data";
 import Keywords from "@/components/Keywords";
 import List from "@/components/List";
-import { DefaultProps } from "@/app/types";
+import { DefaultProps } from "@/types/props";
 import { useMemo } from "react";
 import { filteredPostsFromTags } from "@/lib/filter";
 

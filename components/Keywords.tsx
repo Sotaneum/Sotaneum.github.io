@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { DefaultProps } from "@/app/types";
+import { DefaultProps } from "@/types/props";
 
 interface KeywordsProps extends DefaultProps {
   color?: string;
