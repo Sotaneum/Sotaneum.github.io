@@ -1,8 +1,7 @@
 import { DynamicProps } from "@/app/types";
-import Keywords from "@/components/Keywords";
 import Comments from "@/components/Comments";
 import Title from "@/components/Title";
-import { toPost } from "@/lib/data";
+import { getAllPosts, toPost } from "@/lib/data";
 import DateString from "@/components/DateString";
 import SearchResult from "@/components/SearchResult";
 
@@ -10,17 +9,8 @@ export default function PostLayout({
   params,
   children,
 }: DynamicProps<{ post: string }>) {
-  const {
-    title,
-    groupTags = [],
-    tags = [],
-    date,
-    coverImage,
-  } = toPost(params.post);
-  const keywords = [
-    ...groupTags.filter((tag) => !tags.includes(tag)),
-    ...tags,
-  ].sort();
+  const currentPost = toPost(params.post);
+  const { title, tags = [], date, coverImage } = currentPost;
 
   return (
     <div>
@@ -30,10 +20,20 @@ export default function PostLayout({
           <DateString date={date} />
         </div>
         {children}
-        <Keywords keywords={keywords} selected={keywords} />
         <Comments />
       </div>
-      <SearchResult />
+      <SearchResult
+        posts={getAllPosts().filter(
+          (post) => post.date.toString() !== currentPost.date.toString(),
+        )}
+        selectedKeywords={tags}
+        keywords={tags}
+        color={"bg-red-600"}
+        isOnlyAdd={true}
+        isAndMode={true}
+      >
+        Tag와 관련된 포스트를 소개합니다!
+      </SearchResult>
     </div>
   );
 }

@@ -1,40 +1,48 @@
-"use client";
-
+import { PostInfo } from "@/lib/data";
 import Keywords from "@/components/Keywords";
 import List from "@/components/List";
-import { PostInfo } from "@/lib/data";
-import { useEffect, useState } from "react";
+import { DefaultProps } from "@/app/types";
+import { useMemo } from "react";
 
-interface SearchResultProps {
+interface SearchResultProps extends DefaultProps {
   posts?: PostInfo[];
   color?: string;
   keywords?: string[];
-  defaultSelected?: string[];
+  selectedKeywords?: string[];
+  isOnlyAdd?: boolean;
+  isAndMode?: boolean;
 }
 export default function SearchResult({
   color,
+  children,
   posts = [],
   keywords = [],
-  defaultSelected = [],
+  selectedKeywords = [],
+  isOnlyAdd = false,
+  isAndMode = false,
 }: SearchResultProps) {
-  const [selected, setSelected] = useState(defaultSelected);
-  const filteredPosts = posts.filter((post) => {
-    const allTags = [
-      ...(post.groupTags || []).filter(
-        (tag) => !(post.tags || []).includes(tag),
-      ),
-      ...(post.tags || []),
-    ];
-    return selected.every((tag) => allTags.includes(tag));
-  });
-
-  useEffect(() => {
-    setSelected(defaultSelected);
-  }, [defaultSelected]);
+  const filteredPosts = useMemo(
+    () =>
+      selectedKeywords.length > 0
+        ? posts.filter(({ tags = [] }) =>
+            isAndMode
+              ? selectedKeywords.every((tag) => tags.includes(tag))
+              : selectedKeywords.some((tag) => tags.includes(tag)),
+          )
+        : posts,
+    [posts, selectedKeywords],
+  );
 
   return (
     <div>
-      <Keywords color={color} keywords={keywords} selected={selected} />
+      <Keywords
+        color={color}
+        keywords={keywords}
+        selected={selectedKeywords}
+        isOnlyAdd={isOnlyAdd}
+      >
+        {children}
+      </Keywords>
       <List posts={filteredPosts} />
     </div>
   );

@@ -1,5 +1,5 @@
 export interface DefaultProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface DynamicProps<T> extends DefaultProps {
