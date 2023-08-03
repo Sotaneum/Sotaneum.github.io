@@ -3,6 +3,7 @@ import Keywords from "@/components/Keywords";
 import List from "@/components/List";
 import { DefaultProps } from "@/app/types";
 import { useMemo } from "react";
+import { filteredPostsFromTags } from "@/lib/filter";
 
 interface SearchResultProps extends DefaultProps {
   posts?: PostInfo[];
@@ -22,15 +23,8 @@ export default function SearchResult({
   isAndMode = false,
 }: SearchResultProps) {
   const filteredPosts = useMemo(
-    () =>
-      selectedKeywords.length > 0
-        ? posts.filter(({ tags = [] }) =>
-            isAndMode
-              ? selectedKeywords.every((tag) => tags.includes(tag))
-              : selectedKeywords.some((tag) => tags.includes(tag)),
-          )
-        : posts,
-    [posts, selectedKeywords],
+    () => filteredPostsFromTags(posts, selectedKeywords, isAndMode),
+    [posts, isAndMode, selectedKeywords],
   );
 
   return (

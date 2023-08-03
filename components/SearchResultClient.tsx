@@ -3,6 +3,7 @@
 import { PostInfo } from "@/lib/data";
 import { useEffect, useState } from "react";
 import SearchResult from "@/components/SearchResult";
+import useHash from "@/hooks/useHash";
 
 interface SearchResultProps {
   posts?: PostInfo[];
@@ -22,34 +23,23 @@ export default function SearchResultClient({
     setSelected(defaultSelectKeywords);
   }, [defaultSelectKeywords.join(",")]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const hashStr = decodeURI(window.location.hash);
+  useHash((hash: string) => {
+    const hashReg = /#([a-z]+)-(.*)/g.exec(hash);
+    if (!hashReg) {
+      return;
+    }
 
-      if (!hashStr) {
-        return;
-      }
-      const hashReg = /#([a-z]+)-(.*)/g.exec(hashStr);
+    const [_, command, keyword] = hashReg;
 
-      if (!hashReg) {
-        return;
-      }
+    if (!keywords.includes(keyword)) {
+      return;
+    }
 
-      setSelected((prev) => {
-        const [_, command, keyword] = hashReg;
-
-        if (!keywords.includes(keyword)) {
-          return prev;
-        }
-
-        const next = prev.filter((item) => item !== keyword);
-        return command === "add" ? [...next, keyword] : next;
-      });
-
-      history.pushState("", document.title, window.location.pathname);
+    setSelected((prev) => {
+      const next = prev.filter((item) => item !== keyword);
+      return command === "add" ? [...next, keyword] : next;
     });
-    return () => clearInterval(interval);
-  }, []);
+  });
 
   return (
     <SearchResult

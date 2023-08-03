@@ -1,16 +1,10 @@
 import { getAllPosts } from "@/lib/data";
 import SearchResultClient from "@/components/SearchResultClient";
+import { joinTagsWithPosts } from "@/lib/join";
 
 export default function ListPage() {
   const posts = getAllPosts();
-
-  const keywords = posts.reduce<string[]>(
-    (acc, post) => [
-      ...acc,
-      ...(post.tags || []).filter((tag) => !acc.includes(tag)),
-    ],
-    [],
-  );
+  const keywords = joinTagsWithPosts(posts);
 
   return <SearchResultClient posts={posts} keywords={keywords} />;
 }

@@ -5,6 +5,7 @@ import { getAllPosts, toPost } from "@/lib/data";
 import DateString from "@/components/DateString";
 import SearchResult from "@/components/SearchResult";
 import Pagination from "@/components/Pagination";
+import { isEqualGroupTags, isEqualPost } from "@/lib/is-equal";
 
 export default function PostLayout({
   params,
@@ -14,14 +15,11 @@ export default function PostLayout({
   const currentPost = toPost(params.post);
   const { title, groupTags = [], date, coverImage } = currentPost;
 
-  const posts = allPosts.filter((post) =>
-    (post.groupTags || []).every((tag) => groupTags.includes(tag)),
-  );
+  const posts = allPosts.filter((post) => isEqualGroupTags(post, currentPost));
 
-  const currentIndex = posts.findIndex(
-    (post) => post.date.toString() === date.toString(),
+  const currentIndex = posts.findIndex((post) =>
+    isEqualPost(post, currentPost),
   );
-  console.log(currentIndex);
 
   return (
     <div>
@@ -38,9 +36,7 @@ export default function PostLayout({
         <Comments />
         <SearchResult
           color="bg-red-600"
-          posts={allPosts.filter(
-            (post) => post.date.toString() !== currentPost.date.toString(),
-          )}
+          posts={allPosts.filter((post) => !isEqualPost(post, currentPost))}
           keywords={groupTags}
           isOnlyAdd={true}
           isAndMode={true}
