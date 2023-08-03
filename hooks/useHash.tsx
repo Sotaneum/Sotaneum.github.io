@@ -9,7 +9,7 @@ export default function useHash(onChange: (hash: string) => void) {
       }
 
       onChange(decodeURI(hash));
-      history.pushState("", document.title);
+      history.pushState("", document.title, window.location.pathname);
     });
     return () => clearInterval(interval);
   }, []);

@@ -2,7 +2,7 @@ import { PostInfo } from "@/lib/data";
 
 function joinTags(postInfo: PostInfo) {
   const { tags = [], groupTags = [] } = postInfo;
-  return tags.filter((tag) => groupTags.includes(tag)).concat(groupTags);
+  return tags.filter((tag) => !groupTags.includes(tag)).concat(groupTags);
 }
 
 export function joinTagsWithPosts(postInfos: PostInfo[]) {
