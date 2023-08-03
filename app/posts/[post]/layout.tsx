@@ -4,6 +4,7 @@ import Title from "@/components/Title";
 import { getAllPosts, toPost } from "@/lib/data";
 import DateString from "@/components/DateString";
 import SearchResult from "@/components/SearchResult";
+import Pagination from "@/components/Pagination";
 
 export default function PostLayout({
   params,
@@ -13,6 +14,15 @@ export default function PostLayout({
   const currentPost = toPost(params.post);
   const { title, groupTags = [], date, coverImage } = currentPost;
 
+  const posts = allPosts.filter((post) =>
+    (post.groupTags || []).every((tag) => groupTags.includes(tag)),
+  );
+
+  const currentIndex = posts.findIndex(
+    (post) => post.date.toString() === date.toString(),
+  );
+  console.log(currentIndex);
+
   return (
     <div>
       <Title title={title} coverImage={coverImage} />
@@ -21,6 +31,10 @@ export default function PostLayout({
           <DateString date={date} />
         </div>
         {children}
+        <Pagination
+          prev={posts[currentIndex + 1]}
+          next={posts[currentIndex - 1]}
+        />
         <Comments />
         <SearchResult
           color="bg-red-600"
