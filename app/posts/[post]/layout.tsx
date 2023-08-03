@@ -35,8 +35,8 @@ export default function PostLayout({
         />
         <Comments />
         <SearchResult
-          color="bg-red-600"
           posts={allPosts.filter((post) => !isEqualPost(post, currentPost))}
+          className="p-2 m-4 text-white text-xl highlight highlight-variant-10 highlight-green-600 highlight-spread-md"
           keywords={groupTags}
           isOnlyAdd={true}
           isAndMode={true}

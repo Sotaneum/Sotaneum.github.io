@@ -7,12 +7,10 @@ import useHash from "@/hooks/useHash";
 
 interface SearchResultProps {
   posts?: PostInfo[];
-  color?: string;
   keywords?: string[];
   defaultSelectKeywords?: string[];
 }
 export default function SearchResultClient({
-  color,
   posts = [],
   keywords = [],
   defaultSelectKeywords = [],
@@ -43,7 +41,7 @@ export default function SearchResultClient({
 
   return (
     <SearchResult
-      color={color}
+      className="mb-6 p-4 border-2 border-black"
       keywords={keywords}
       selectedKeywords={selected}
       posts={posts}

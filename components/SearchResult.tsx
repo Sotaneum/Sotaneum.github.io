@@ -7,15 +7,14 @@ import { filteredPostsFromTags } from "@/lib/filter";
 
 interface SearchResultProps extends DefaultProps {
   posts?: PostInfo[];
-  color?: string;
   keywords?: string[];
   selectedKeywords?: string[];
   isOnlyAdd?: boolean;
   isAndMode?: boolean;
 }
 export default function SearchResult({
-  color,
   children,
+  className,
   posts = [],
   keywords = [],
   selectedKeywords = [],
@@ -30,7 +29,7 @@ export default function SearchResult({
   return (
     <div>
       <Keywords
-        color={color}
+        className={className}
         keywords={keywords}
         selected={selectedKeywords}
         isOnlyAdd={isOnlyAdd}

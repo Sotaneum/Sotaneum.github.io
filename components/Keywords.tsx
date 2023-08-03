@@ -11,30 +11,32 @@ interface KeywordsProps extends DefaultProps {
 
 export default function Keywords({
   children,
-  color = "bg-amber-500",
+  className = "",
   keywords = [],
   selected = [],
   isOnlyAdd = false,
 }: KeywordsProps) {
   return (
-    <div>
-      {keywords.sort().map((key) => {
+    <div className={classNames(className)}>
+      {keywords.sort().map((key, idx) => {
         const select = selected.includes(key);
 
         return (
-          <Link
-            href={`/posts#${isOnlyAdd || !select ? "add" : "remove"}-${key}`}
-            key={key}
-            className={classNames(
-              color,
-              "rounded-lg text-white	p-1 m-1 text-sm",
-              {
-                "opacity-50": !select,
-              },
-            )}
-          >
-            {key}
-          </Link>
+          <>
+            <Link
+              href={`/posts#${isOnlyAdd || !select ? "add" : "remove"}-${key}`}
+              key={key}
+              className={classNames(
+                "rounded-lg text-white	p-1 m-1 text-sm bg-black",
+                {
+                  "opacity-50": !select,
+                },
+              )}
+            >
+              {key}
+            </Link>
+            {idx !== keywords.length - 1 && <span key={`${key},`}>,</span>}
+          </>
         );
       })}
       {children}
