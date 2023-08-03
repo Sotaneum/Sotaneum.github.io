@@ -19,7 +19,9 @@ export default function SearchResultClient({
   const [selected, setSelected] = useState(defaultSelectKeywords);
 
   useEffect(() => {
-    setSelected(defaultKeywords.split(","));
+    setSelected(
+      defaultKeywords.split(",").filter((key) => keywords.includes(key)),
+    );
   }, [defaultKeywords]);
 
   useHash((hash: string) => {
