@@ -9,8 +9,9 @@ export default function PostLayout({
   params,
   children,
 }: DynamicProps<{ post: string }>) {
+  const allPosts = getAllPosts();
   const currentPost = toPost(params.post);
-  const { title, tags = [], date, coverImage } = currentPost;
+  const { title, groupTags = [], date, coverImage } = currentPost;
 
   return (
     <div>
@@ -23,14 +24,14 @@ export default function PostLayout({
         <Comments />
       </div>
       <SearchResult
-        posts={getAllPosts().filter(
+        color="bg-red-600"
+        posts={allPosts.filter(
           (post) => post.date.toString() !== currentPost.date.toString(),
         )}
-        selectedKeywords={tags}
-        keywords={tags}
-        color={"bg-red-600"}
+        keywords={groupTags}
         isOnlyAdd={true}
         isAndMode={true}
+        selectedKeywords={groupTags}
       >
         Tag와 관련된 포스트를 소개합니다!
       </SearchResult>

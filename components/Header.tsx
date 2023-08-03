@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <div className="md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-10 mt-8">
-      <a href="/" className="inline-flex items-center">
+      <Link href="/" className="inline-flex items-center">
         <span className="text-4xl pl-2 select-none">Blog</span>
         <Image
           className="w-16 h-16 select-none"
@@ -12,7 +13,7 @@ export default function Header() {
           width={18}
           height={18}
         />
-      </a>
+      </Link>
       <span className="text-sm whitespace-nowrap">
         이것저것 해보는 블로그입니다.
       </span>

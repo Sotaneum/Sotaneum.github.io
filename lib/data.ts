@@ -8,6 +8,7 @@ export interface PostInfo {
   excerpt: string;
   coverImage?: string;
   tags?: string[];
+  groupTags?: string[];
   content: string;
   url: string;
 }
@@ -46,15 +47,20 @@ export function toPost(filename: string): PostInfo {
 
   const createDate = toDate(filename);
   const url = `/posts/${filename}`;
+  const groupTags = data.groupTags || [];
+  const tags = (data.tags || [])
+    .filter((tag: string) => !data.groupTags.includes(tag))
+    .concat(groupTags);
 
   return {
     url,
-    title: data.title,
+    tags,
+    groupTags,
     date: createDate,
+    title: data.title,
     excerpt: data.excerpt,
-    coverImage: `${url}/${data.coverImage}`,
-    tags: data.tags || [],
     content: convertImagePath(content),
+    coverImage: `${url}/${data.coverImage}`,
   };
 }
 
