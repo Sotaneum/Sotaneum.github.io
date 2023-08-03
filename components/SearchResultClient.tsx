@@ -15,11 +15,12 @@ export default function SearchResultClient({
   keywords = [],
   defaultSelectKeywords = [],
 }: SearchResultProps) {
+  const defaultKeywords = defaultSelectKeywords.join(",");
   const [selected, setSelected] = useState(defaultSelectKeywords);
 
   useEffect(() => {
-    setSelected(defaultSelectKeywords);
-  }, [defaultSelectKeywords.join(",")]);
+    setSelected(defaultKeywords.split(","));
+  }, [defaultKeywords]);
 
   useHash((hash: string) => {
     const hashReg = /#([a-z]+)-(.*)/g.exec(hash);
