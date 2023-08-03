@@ -7,7 +7,7 @@ interface PaginationProps {
 }
 export default function Pagination({ prev, next }: PaginationProps) {
   return (
-    <table className="w-full mt-4 mb-4 border-t-amber-50">
+    <table className="w-full mt-10 mb-4 border-t-amber-50">
       <tbody>
         <tr>
           {prev && (
