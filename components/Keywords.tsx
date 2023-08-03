@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { DefaultProps } from "@/types/props";
+import { Fragment } from "react";
 
 interface KeywordsProps extends DefaultProps {
   color?: string;
@@ -22,10 +23,9 @@ export default function Keywords({
         const select = selected.includes(key);
 
         return (
-          <>
+          <Fragment key={key}>
             <Link
               href={`/posts#${isOnlyAdd || !select ? "add" : "remove"}-${key}`}
-              key={key}
               className={classNames(
                 "rounded-lg text-white	p-1 m-1 text-sm bg-black",
                 {
@@ -35,8 +35,8 @@ export default function Keywords({
             >
               {key}
             </Link>
-            {idx !== keywords.length - 1 && <span key={`${key},`}>,</span>}
-          </>
+            {idx !== keywords.length - 1 && <span>,</span>}
+          </Fragment>
         );
       })}
       {children}
