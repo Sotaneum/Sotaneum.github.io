@@ -1,10 +1,6 @@
 import { PostInfo } from "@/lib/data";
 import Link from "next/link";
 
-// text-overflow: ellipsis;
-// overflow: hidden;
-// text-wrap: nowrap;
-
 interface PaginationProps {
   next?: PostInfo;
   prev?: PostInfo;
