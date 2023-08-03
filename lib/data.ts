@@ -7,7 +7,6 @@ export interface PostInfo {
   date: Date;
   excerpt: string;
   coverImage?: string;
-  groupTags: string[];
   tags?: string[];
   content: string;
   url: string;
@@ -54,7 +53,6 @@ export function toPost(filename: string): PostInfo {
     date: createDate,
     excerpt: data.excerpt,
     coverImage: `${url}/${data.coverImage}`,
-    groupTags: data.groupTags || [],
     tags: data.tags || [],
     content: convertImagePath(content),
   };
