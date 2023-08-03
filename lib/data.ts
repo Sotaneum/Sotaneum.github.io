@@ -16,9 +16,14 @@ export interface PostInfo {
 const postsDirectory = join(process.cwd(), "_posts");
 
 export function getPostFilenames() {
-  return fs
-    .readdirSync(postsDirectory)
-    .map((slug) => slug.replace(/\.md$/, ""));
+  try {
+    return fs
+      .readdirSync(postsDirectory)
+      .map((slug) => slug.replace(/\.md$/, ""));
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 }
 
 function toDate(filename: string) {
