@@ -17,7 +17,7 @@ export default function Title({ coverImage, title }: TitleProps) {
             <Image
               src={coverImage}
               alt={`Cover Image for ${title}`}
-              className="shadow-sm w-full"
+              className="shadow-sm w-full bg-[url('/assets/error.jpg')]"
               width={1300}
               height={630}
             />

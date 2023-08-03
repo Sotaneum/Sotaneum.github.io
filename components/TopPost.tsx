@@ -23,9 +23,9 @@ export default function TopPost({
         <div className="mb-8 md:mb-16">
           <Link href={url}>
             <Image
-              className="shadow-sm w-full hover:shadow-lg transition-shadow duration-200"
+              className="shadow-sm w-full hover:shadow-lg transition-shadow duration-200 bg-[url('/assets/error.jpg')]"
               src={imageUrl}
-              alt={desc}
+              alt={title}
               width={2000}
               height={1000}
             />
