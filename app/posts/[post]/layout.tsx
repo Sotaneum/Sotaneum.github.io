@@ -22,19 +22,19 @@ export default function PostLayout({
         </div>
         {children}
         <Comments />
+        <SearchResult
+          color="bg-red-600"
+          posts={allPosts.filter(
+            (post) => post.date.toString() !== currentPost.date.toString(),
+          )}
+          keywords={groupTags}
+          isOnlyAdd={true}
+          isAndMode={true}
+          selectedKeywords={groupTags}
+        >
+          Tag와 관련된 포스트를 소개합니다!
+        </SearchResult>
       </div>
-      <SearchResult
-        color="bg-red-600"
-        posts={allPosts.filter(
-          (post) => post.date.toString() !== currentPost.date.toString(),
-        )}
-        keywords={groupTags}
-        isOnlyAdd={true}
-        isAndMode={true}
-        selectedKeywords={groupTags}
-      >
-        Tag와 관련된 포스트를 소개합니다!
-      </SearchResult>
     </div>
   );
 }
