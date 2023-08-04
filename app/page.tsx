@@ -22,7 +22,7 @@ export default function RootPage() {
   const [topPost, ...shortPosts] = posts.slice(0, 3);
 
   return (
-    <main>
+    <main style={{ minHeight: "calc(100vh - 12rem)" }}>
       {topPost && (
         <TopPost
           url={topPost.url}
