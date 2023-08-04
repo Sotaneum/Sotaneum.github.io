@@ -65,7 +65,7 @@ export function toPost(filename: string): PostInfo {
     title: data.title,
     excerpt: data.excerpt,
     content: convertImagePath(content),
-    coverImage: `${url}/${data.coverImage}`,
+    coverImage: data.coverImage ? `${url}/${data.coverImage}` : "",
   };
 }
 
