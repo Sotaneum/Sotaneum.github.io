@@ -1,7 +1,7 @@
 "use client";
 
 import { PostInfo } from "@/lib/data";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SearchResult from "@/components/SearchResult";
 import useHash from "@/hooks/useHash";
 
@@ -18,11 +18,14 @@ export default function SearchResultClient({
   const defaultKeywords = defaultSelectKeywords.join(",");
   const [selected, setSelected] = useState(defaultSelectKeywords);
 
+  const keywordFilter = useCallback(
+    (key: string) => keywords.includes(key),
+    [keywords],
+  );
+
   useEffect(() => {
-    setSelected(
-      defaultKeywords.split(",").filter((key) => keywords.includes(key)),
-    );
-  }, [defaultKeywords]);
+    setSelected(defaultKeywords.split(",").filter(keywordFilter));
+  }, [defaultKeywords, keywordFilter]);
 
   useHash((hash: string) => {
     const hashReg = /#([a-z]+)-(.*)/g.exec(hash);
