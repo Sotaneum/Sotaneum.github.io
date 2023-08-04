@@ -1,4 +1,4 @@
-const { exec } = require("child_process");
+const cp = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
@@ -15,7 +15,7 @@ function open(targetPath) {
         return "xdg-open";
     }
   };
-  exec(getCommandLine() + " " + targetPath);
+  cp.execFileSync(getCommandLine(), [targetPath]);
 }
 
 function mkdir(targetPath) {
