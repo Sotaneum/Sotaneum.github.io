@@ -34,7 +34,9 @@ export default function SearchResult({
         selected={selectedKeywords}
         isOnlyAdd={isOnlyAdd}
       >
-        {children}
+        {filteredPosts.length > 0
+          ? children
+          : "태그와 관련된 게시글이 없습니다."}
       </Keywords>
       <List posts={filteredPosts} />
     </div>
