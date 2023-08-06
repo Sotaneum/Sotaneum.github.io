@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Gowun_Dodum } from "next/font/google";
+import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/index.css";
@@ -17,6 +18,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="ko">
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-M3WHCM9VZ9" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-M3WHCM9VZ9');
+        `}
+      </Script>
       <body className={`${gowunDodum.className} container mx-auto px-5`}>
         <Header />
         {children}
