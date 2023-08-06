@@ -37,6 +37,16 @@ export default function RootLayout({ children }: ChildrenProps) {
         {children}
         <Footer />
       </body>
+      <Script type="text/javascript" src="https://wcs.naver.net/wcslog.js" />
+      <Script type="text/javascript" id="naver-analytics">
+        {`
+          if(!wcs_add) var wcs_add = {};
+            wcs_add["wa"] = "130064e86124dd0";
+            if(window.wcs) {
+            wcs_do();
+          }
+        `}
+      </Script>
     </html>
   );
 }
