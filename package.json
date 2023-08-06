@@ -13,6 +13,7 @@
     "prepare": "husky install",
     "new": "OPEN=true node ./scripts/new-post.js",
     "last": "node ./scripts/last-post.js",
+    "precompile": "rm -rf .next",
     "compile": "node ./scripts/compile-post.js"
   },
   "dependencies": {

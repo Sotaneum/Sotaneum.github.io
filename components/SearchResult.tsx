@@ -1,11 +1,11 @@
 import { PostInfo } from "@/lib/data";
 import Keywords from "@/components/Keywords";
 import List from "@/components/List";
-import { DefaultProps } from "@/types/props";
+import { ChildrenProps, ClassNameProps } from "@/types/props";
 import { useMemo } from "react";
 import { filteredPostsFromTags } from "@/lib/filter";
 
-interface SearchResultProps extends DefaultProps {
+interface SearchResultProps extends ChildrenProps, ClassNameProps {
   posts?: PostInfo[];
   keywords?: string[];
   selectedKeywords?: string[];

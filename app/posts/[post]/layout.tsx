@@ -5,11 +5,11 @@ import DateString from "@/components/DateString";
 import SearchResult from "@/components/SearchResult";
 import Pagination from "@/components/Pagination";
 import { isEqualGroupTags, isEqualPost } from "@/lib/is-equal";
+import { ChildrenProps, ParamsProps } from "@/types/props";
 
-interface PostLayoutProps {
-  params: { post: string };
-  children: React.ReactNode;
-}
+interface PostLayoutProps
+  extends ParamsProps<{ post: string }>,
+    ChildrenProps {}
 
 export default function PostLayout({ params, children }: PostLayoutProps) {
   const allPosts = getAllPosts();

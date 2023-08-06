@@ -3,16 +3,13 @@ import { Metadata, ResolvingMetadata } from "next";
 import { BLOG_NAME } from "@/lib/constants";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { ParamsProps } from "@/types/props";
 
 interface Params {
   post: string;
 }
 
-interface PostPageProps {
-  params: Params;
-}
-
-export default async function PostPage({ params }: PostPageProps) {
+export default async function PostPage({ params }: ParamsProps<Params>) {
   const post = toPost(params.post);
 
   return (
@@ -29,7 +26,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  { params }: PostPageProps,
+  { params }: ParamsProps<Params>,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { date, title, excerpt, coverImage } = toPost(params.post);

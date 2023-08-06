@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import "@/styles/index.css";
 import "@/styles/github-markdown.css";
 import { BLOG_NAME } from "@/lib/constants";
+import { ChildrenProps } from "@/types/props";
 
 const gowunDodum = Gowun_Dodum({ weight: "400", subsets: ["latin"] });
 
@@ -13,11 +14,7 @@ export const metadata: Metadata = {
   description: "IT부터 그냥 이것저것 작성한 공간입니다.",
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="ko">
       <body className={`${gowunDodum.className} container mx-auto px-5`}>

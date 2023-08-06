@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { DefaultProps } from "@/types/props";
+import { ChildrenProps, ClassNameProps } from "@/types/props";
 import { Fragment } from "react";
 
-interface KeywordsProps extends DefaultProps {
+interface KeywordsProps extends ChildrenProps, ClassNameProps {
   color?: string;
   keywords?: string[];
   selected?: string[];
