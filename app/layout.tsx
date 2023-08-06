@@ -28,6 +28,10 @@ export default function RootLayout({ children }: ChildrenProps) {
           gtag('config', 'G-M3WHCM9VZ9');
         `}
       </Script>
+      <Script
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8373339952895756"
+        crossOrigin="anonymous"
+      />
       <body className={`${gowunDodum.className} container mx-auto px-5`}>
         <Header />
         {children}
