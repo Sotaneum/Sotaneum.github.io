@@ -33,7 +33,10 @@ export async function generateMetadata(
 
   const previousImages = (await parent).openGraph?.images || [];
 
+  const host = process.env.HOST ? new URL(process.env.HOST) : null;
+
   return {
+    metadataBase: host,
     title: `${BLOG_NAME} :: ${title}`,
     openGraph: {
       title: `${BLOG_NAME} :: ${title}`,
