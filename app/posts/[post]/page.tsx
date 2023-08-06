@@ -1,4 +1,4 @@
-import { getPostFilenames, toPost } from "@/lib/data";
+import { getPostFilenames, getURL, toPost } from "@/lib/data";
 import { Metadata, ResolvingMetadata } from "next";
 import { BLOG_NAME } from "@/lib/constants";
 import ReactMarkdown from "react-markdown";
@@ -33,10 +33,8 @@ export async function generateMetadata(
 
   const previousImages = (await parent).openGraph?.images || [];
 
-  const host = process.env.HOST ? new URL(process.env.HOST) : null;
-
   return {
-    metadataBase: host,
+    metadataBase: getURL(),
     title: `${BLOG_NAME} :: ${title}`,
     openGraph: {
       title: `${BLOG_NAME} :: ${title}`,

@@ -26,7 +26,7 @@ export function getPostFilenames() {
   }
 }
 
-function toDate(filename: string) {
+export function toDate(filename: string) {
   const reg = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})$/.exec(filename);
   if (!reg) {
     throw new Error("맞지 않는 포맷입니다.");
@@ -73,4 +73,8 @@ export function getAllPosts() {
   return getPostFilenames()
     .map((filename) => toPost(filename))
     .sort((a, b) => (a.date > b.date ? -1 : 1));
+}
+
+export function getURL() {
+  return process.env.HOST ? new URL(process.env.HOST) : null;
 }
