@@ -34,14 +34,15 @@ export default function SearchResultClient({
     }
 
     const [_, command, keyword] = hashReg;
+    const targetKeywords = keyword.split("~");
 
-    if (!keywords.includes(keyword)) {
+    if (targetKeywords.length === 0) {
       return;
     }
 
     setSelected((prev) => {
-      const next = prev.filter((item) => item !== keyword);
-      return command === "add" ? [...next, keyword] : next;
+      const next = prev.filter((item) => !targetKeywords.includes(item));
+      return command === "add" ? [...next, ...targetKeywords] : next;
     });
   });
 
